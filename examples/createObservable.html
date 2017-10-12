@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Observable的创建 -- create</h3>
+    <p>打开控制台查看结果</p>
+
+    <script src="https://cdn.bootcss.com/rxjs/5.4.3/Rx.min.js"></script>
+    <script>
+        //同步行为
+        var observable = Rx.Observable.create(function(observer){
+            observer.next('jerry');
+            observer.next('anna');
+        });
+
+        var observer = {
+            next: function(value){
+                console.log(value);
+            },
+            err: function(err) {
+                console.log('err');
+            },
+            complete: function() {
+                console.log('complete');
+            }
+        }
+
+        console.log('start');
+        observable.subscribe(observer);
+        console.log('end');
+
+        //异步行为
+        var observableAsync = Rx.Observable.create(function(observer){
+            observer.next('jerry');
+            observer.next('anna');
+            setTimeout(function(){
+                observer.next("executation after 300ms ")
+            }, 300);
+        });
+
+        console.log('start');
+        observableAsync.subscribe(observer);
+        console.log('end');
+    
+    </script>
+</body>
+</html>
