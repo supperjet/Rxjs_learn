@@ -1,4 +1,6 @@
 ### 创建Observable -- of
+[30 天精通 RxJS (06)： 建立 Observable(二)](https://juejin.im/post/59c9b738f265da0648446334)
+
 如果想要同步的传递几个值，可以使用of构造器。
 
 ```

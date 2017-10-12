@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>实例创建操作符-from</h3>
+    
+    <script src="https://cdn.bootcss.com/rxjs/5.4.3/Rx.min.js"></script>
+    <script>
+        //方式一
+        var observer = {
+            next: function(value){
+                console.log(value);
+            },
+            err: function(err) {
+                console.log(err, 'err');
+            },
+            complete: function() {
+                console.log('complete');
+            }
+        }
+
+        var arr = ['anan', 2, {a:1}, function(x){ return x}];
+        var string = 'zhouyufei';
+
+
+        var source = Rx.Observable.from(arr);
+
+        var source1 = Rx.Observable.from(string);
+
+
+        source.subscribe(observer);
+
+        source1.subscribe(observer);
+
+
+
+        
+    </script>
+    
+</body>
+</html>
