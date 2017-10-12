@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实例创建操作符</title>
+</head>
+<body>
+    <h3>实例创建操作符</h3>
+        
+    <script src="https://cdn.bootcss.com/rxjs/5.4.3/Rx.min.js"></script>
+    <script>
+        //of 同步传递多值
+        var string1 = 'he';
+        var string2 = 'she';
+
+        var arr1 = [{a: 1}, 'b', function(c){return c;}, 0];
+        var arr2 = [{a: 1}, 'b', function(c){return c+c;}, 0];
+
+        var obj1 = {
+            a:1, 
+            b:'a', 
+            c: function(v){
+                return v;
+            },
+            d: [1,2,3]
+        };
+
+        var obj2 = {
+            a:1, 
+            b:'a', 
+            c: function(v){
+                return v;
+            },
+            d: [1,2,3]
+        };
+
+        var fun1 = x => x + 1;
+        var fun2 = y => y + 2; 
+
+        var observer1 = {
+            next: function(value){
+                console.log(value);
+            }
+        }
+
+
+        var observer2 = {
+            next: function(value){
+                console.log(value);
+                console.log(value.c("hello"));
+            }
+        }
+
+        var observer3 = {
+            next: function(value){
+                console.log(value(2));
+            }
+        }
+        var observer4 = {
+            next: function(value){
+                console.log(value[2](5));
+            }
+        }
+
+        var source1 = Rx.Observable.of(arr1, arr2);
+        var source2 = Rx.Observable.of(obj1, obj2);
+        var source3 = Rx.Observable.of(string1, string2);
+        var source4 = Rx.Observable.of(fun1, fun2);
+
+        source1.subscribe(observer4);
+        source2.subscribe(observer2);
+        source3.subscribe(observer1);
+        source4.subscribe(observer3);
+       
+
+
+    
+    </script>
+    
+</body>
+</html>
